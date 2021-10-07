@@ -120,11 +120,19 @@ contract SupplyChain {
     // skuCount = skuCount + 1;
     // emit LogForSale(skuCount);
     // return true;
-    items[skuCount] = Item(_name, skuCount, _price, State.ForSale, msg.sender, address(0));
+    uint _sku = skuCount;
+    items[_sku] = Item({ 
+      name: _name, 
+      sku: _sku, 
+      price: _price, 
+      state: State.ForSale,
+      seller: msg.sender, 
+      buyer: address(0)
+    });
 
     skuCount = skuCount + 1;
 
-    emit LogForSale(skuCount);
+    emit LogForSale(_sku);
 
     return true;
 
